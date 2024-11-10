@@ -1,0 +1,25 @@
+name: Test Star Wars Film API
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Grant permission to run test
+        run: chmod +x ./node_modules/.bin/jest
+
+      - name: Run film test
+        run: npm test src/tests/film.test.js
