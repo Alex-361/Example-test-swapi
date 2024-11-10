@@ -1,7 +1,7 @@
 {
   "name": "projeto-swapi-tests",
   "version": "1.0.0",
-  "description": "",
+  "description": "Testes para as APIs do Star Wars",
   "main": "index.js",
   "scripts": {
     "test": "jest"
