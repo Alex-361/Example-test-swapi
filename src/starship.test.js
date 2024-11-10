@@ -1,18 +1,17 @@
-// src/tests/starship.test.js
 const axios = require('axios');
 
 describe("Star Wars Starship API", () => {
-  it("deve buscar os detalhes da nave Millennium Falcon", async () => {
-    const response = await axios.get("https://swapi.dev/api/starships/10/"); // ID 10 é da Millennium Falcon
-    expect(response.status).toBe(200);
-    expect(response.data).toHaveProperty("name", "Millennium Falcon");
+  it("should fetch the details of the Millennium Falcon", async () => {
+    const response = await axios.get("https://swapi.dev/api/starships/10/"); // URL da Millennium Falcon
+    expect(response.status).toBe(200); // Verifique se a resposta tem status 200
+    expect(response.data.name).toBe("Millennium Falcon"); // Verifique o nome da nave
   });
 
-  it("deve retornar erro ao buscar uma nave inexistente", async () => {
+  it("should return 404 for an invalid starship", async () => {
     try {
-      await axios.get("https://swapi.dev/api/starships/99999/");
+      await axios.get("https://swapi.dev/api/starships/9999/"); // URL inválida
     } catch (error) {
-      expect(error.response.status).toBe(404);
+      expect(error.response.status).toBe(404); // Verifique se a resposta é 404
     }
   });
 });
