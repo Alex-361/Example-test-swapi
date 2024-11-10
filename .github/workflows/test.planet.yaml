@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install  # Instala as dependências do projeto
 
+      - name: Grant permission to run Jest
+        run: chmod +x ./node_modules/.bin/jest  # Concede permissão de execução para o Jest
+
       - name: Run Planets API tests
         run: npm test src/tests/planet.test.js  # Executa os testes para a API de planetas
