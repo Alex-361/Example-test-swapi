@@ -24,4 +24,4 @@ jobs:
         run: chmod +x ./node_modules/.bin/jest
 
       - name: Run tests
-        run: npm test
+        run: npm test  # Aqui o npm test vai rodar, e você poderá ver o log dos testes no GitHub Actions

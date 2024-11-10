@@ -24,4 +24,4 @@ jobs:
         run: chmod +x ./node_modules/.bin/jest
 
       - name: Run film test
-        run: npm test src/tests/film.test.js
+        run: npm test src/tests/film.test.js  # Rodando o teste específico de filme
