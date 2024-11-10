@@ -1,24 +1,20 @@
-name: Test Example Workflow
+name: Node.js CI
 
-on:
-  push:
-    branches: [ main ]  # Executa os testes ao fazer push na branch main
+on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest  # Define o ambiente de execução
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14, 16]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3  # Atualiza para a versão mais recente
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3  # Atualiza para a versão mais recente
-        with:
-          node-version: '20'  # Define a versão do Node.js como 20
-
-      - name: Install dependencies
-        run: npm install  # Instala as dependências do projeto
-
-      - name: Run tests
-        run: npm test  # Executa os testes configurados no Jest
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install
+    - run: npm test        
