@@ -2,7 +2,7 @@ name: Test Star Wars Starship API
 
 on:
   push:
-    branches: [main]  # Executa o workflow sempre que há um push na branch principal (main)
+    branches: [main]  # Executa o workflow em push na branch main
 
 jobs:
   test:
@@ -10,18 +10,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3  # Faz o checkout do código do repositório
+        uses: actions/checkout@v3  # Faz o checkout do código
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Define explicitamente a versão do Node.js para evitar o aviso
+          node-version: '20'  # Define a versão do Node.js
 
       - name: Install dependencies
-        run: npm install  # Instala as dependências do projeto (axios, jest, etc.)
-
-      - name: Grant permission to run tests
-        run: chmod +x ./node_modules/.bin/jest  # Concede permissão de execução para o Jest
+        run: npm install  # Instala as dependências
 
       - name: Run Starship API tests
-        run: npm test src/tests/starship.test.js  # Executa os testes específicos para Starship
+        run: npm test src/tests/starship.test.js  # Executa o teste específico para Starship
