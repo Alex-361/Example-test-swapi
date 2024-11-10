@@ -1,6 +1,7 @@
 {
   "name": "projeto-swapi-tests",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest"
@@ -8,7 +9,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "jest": "^29.7.0"
   }
