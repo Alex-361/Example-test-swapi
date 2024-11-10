@@ -1,6 +1,6 @@
 name: Test Example Workflow
 
-on: 
+on:
   push:
     branches: [ main ]  # Executa os testes ao fazer push na branch main
 
