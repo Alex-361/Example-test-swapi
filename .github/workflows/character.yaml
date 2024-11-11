@@ -24,5 +24,8 @@ jobs:
       - name: Install dependencies
         run: npm install  # Instala as dependências do projeto
 
+      - name: Grant permission to run tests
+        run: chmod +x ./node_modules/.bin/jest  # Concede permissão de execução para o Jest
+
       - name: Run Character API tests
         run: npm test src/tests/character.test.js  # Executa os testes específicos para Character
