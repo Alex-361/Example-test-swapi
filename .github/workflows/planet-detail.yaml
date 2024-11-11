@@ -1,4 +1,4 @@
-name: Test Star Wars Planet Detail
+name: Test Star Wars Planet Detail API
 
 on:
   push:
