@@ -29,3 +29,4 @@ jobs:
 
       - name: Run Films API tests
         run: npm test src/tests/films.test.js  # Executa os testes específicos para Films
+
