@@ -19,10 +19,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Força o uso do Node.js versão 20
+          node-version: '20'  # Força o uso do Node.js versão 20 para evitar problemas de versão desatualizada
 
       - name: Install dependencies
         run: npm install  # Instala as dependências do projeto
+
+      - name: Grant permission to run tests
+        run: chmod +x ./node_modules/.bin/jest  # Concede permissão de execução para o Jest
 
       - name: Run Star API tests
         run: npm test src/tests/star.test.js  # Executa os testes do arquivo star.test.js
