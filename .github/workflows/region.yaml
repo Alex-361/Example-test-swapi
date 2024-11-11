@@ -13,16 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Configurar a versão do Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # Step 3: Verificar versão do Node.js
+      - name: Verify Node.js version
+        run: node -v
+
+      # Step 4: Instalar as dependências
       - name: Install dependencies
         run: npm install
 
+      # Step 5: Rodar os testes da API Region
       - name: Run Region API tests
         run: npm test src/tests/region.test.js
