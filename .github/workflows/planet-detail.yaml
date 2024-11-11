@@ -23,7 +23,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: sudo npm install
+        run: |
+          sudo npm cache clean --force  # Limpar cache
+          sudo npm install              # Instalar dependências
+          sudo chmod -R 755 .           # Garantir permissões
 
       - name: Verify Node.js and npm versions
         run: |
@@ -31,4 +34,6 @@ jobs:
           npm -v
 
       - name: Run Planet Detail API tests
-        run: npm test src/tests/planet-detail.test.js
+        run: |
+          sudo chmod +x ./node_modules/.bin/jest  # Permissões de execução do Jest
+          npm test src/tests/planet-detail.test.js
