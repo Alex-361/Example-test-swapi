@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout do repositório
+      # Step 1: Checkout do repositório (verifique se a versão mais recente é usada)
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Atualização para a versão mais recente (v4)
 
-      # Step 2: Forçar a versão do Node.js para a versão 20
+      # Step 2: Configurar o Node.js para versão 20 (garante que a versão mais recente seja usada)
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # Atualização para a versão mais recente (v4)
         with:
           node-version: '20'
           cache: 'npm'
@@ -28,7 +28,7 @@ jobs:
       - name: Verify Node.js version
         run: node -v
 
-      # Step 4: Instalar as dependências
+      # Step 4: Instalar dependências
       - name: Install dependencies
         run: npm install
 
