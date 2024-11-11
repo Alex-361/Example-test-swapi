@@ -17,13 +17,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Step 2: Configurar a versão do Node.js
+      # Step 2: Forçar a versão do Node.js para a versão 20
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+          cache: 'npm'
 
-      # Step 3: Verificar versão do Node.js
+      # Step 3: Verificar a versão do Node.js
       - name: Verify Node.js version
         run: node -v
 
