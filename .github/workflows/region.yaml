@@ -13,33 +13,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout do repositório (verifique se a versão mais recente é usada)
+      # Step 1: Checkout do repositório
       - name: Checkout repository
         uses: actions/checkout@v4  # Atualização para a versão mais recente (v4)
 
-      # Step 2: Configurar o Node.js para versão 20 (garante que a versão mais recente seja usada)
+      # Step 2: Configurar o Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v4  # Atualização para a versão mais recente (v4)
+        uses: actions/setup-node@v4  # Versão mais recente (v4)
         with:
           node-version: '20'
           cache: 'npm'
 
-      # Step 3: Verificar a versão do Node.js e garantir que a instalação foi bem sucedida
+      # Step 3: Verificar as versões do Node e npm
       - name: Verify Node.js version
         run: |
           node -v
           npm -v
 
-      # Step 4: Garantir permissões corretas (pode ajudar com erros de permissão)
+      # Step 4: Instalar dependências
+      - name: Install dependencies
+        run: npm install
+        # Garantindo permissões corretas durante a instalação
+        continue-on-error: false
+
+      # Step 5: Garantir permissões corretas (se o erro de permissão persistir)
       - name: Fix permissions
         run: |
           sudo chown -R $USER:$USER /usr/local/lib/node_modules
           sudo chmod -R 755 /usr/local/lib/node_modules
 
-      # Step 5: Instalar dependências
-      - name: Install dependencies
-        run: npm install
-
       # Step 6: Rodar os testes da API Region
       - name: Run Region API tests
         run: npm test src/tests/region.test.js
+        continue-on-error: false
