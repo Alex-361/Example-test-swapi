@@ -24,14 +24,22 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # Step 3: Verificar a versão do Node.js
+      # Step 3: Verificar a versão do Node.js e garantir que a instalação foi bem sucedida
       - name: Verify Node.js version
-        run: node -v
+        run: |
+          node -v
+          npm -v
 
-      # Step 4: Instalar dependências
+      # Step 4: Garantir permissões corretas (pode ajudar com erros de permissão)
+      - name: Fix permissions
+        run: |
+          sudo chown -R $USER:$USER /usr/local/lib/node_modules
+          sudo chmod -R 755 /usr/local/lib/node_modules
+
+      # Step 5: Instalar dependências
       - name: Install dependencies
         run: npm install
 
-      # Step 5: Rodar os testes da API Region
+      # Step 6: Rodar os testes da API Region
       - name: Run Region API tests
         run: npm test src/tests/region.test.js
