@@ -19,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Força o uso do Node.js versão 20 para evitar problemas de versão desatualizada
+          node-version: '20'  # Garantindo que estamos usando Node.js versão 20
 
       - name: Install dependencies
         run: npm install  # Instala as dependências do projeto
