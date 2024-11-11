@@ -15,7 +15,7 @@ jobs:
     steps:
       # Passo 1: Checkout do repositório
       - name: Checkout repository
-        uses: actions/checkout@v4  # Usando a versão mais recente do GitHub Actions
+        uses: actions/checkout@v4  # A versão mais recente do GitHub Actions
 
       # Passo 2: Configurar o Node.js
       - name: Set up Node.js
@@ -24,20 +24,24 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      # Passo 3: Fixar permissões do npm
-      - name: Fix npm permissions
-        run: sudo chmod -R 777 /usr/local/lib/node_modules
-
-      # Passo 4: Instalar dependências
+      # Passo 3: Instalar dependências
       - name: Install dependencies
-        run: sudo npm install  # Usando o sudo para garantir que as dependências sejam instaladas corretamente
+        run: |
+          sudo apt-get install -y build-essential # Garantir que dependências do sistema estão presentes
+          sudo npm install # Garantir instalação das dependências
 
-      # Passo 5: Verificar versões do Node.js e npm para garantir que estão corretas
+      # Passo 4: Verificar versões do Node.js e npm para garantir que estão corretas
       - name: Verify Node.js and npm versions
         run: |
           node -v
           npm -v
 
+      # Passo 5: Garantir permissões de execução para o npm
+      - name: Fix npm permissions
+        run: sudo chmod -R 777 /usr/local/lib/node_modules
+
       # Passo 6: Rodar os testes da API Region
       - name: Run Region API tests
-        run: chmod +x src/tests/region.test.js && npm test src/tests/region.test.js
+        run: |
+          sudo chmod +x src/tests/region.test.js # Garantir permissão de execução para o arquivo de teste
+          npm test src/tests/region.test.js
