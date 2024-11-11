@@ -15,7 +15,7 @@ jobs:
     steps:
       # Passo 1: Checkout do repositório
       - name: Checkout repository
-        uses: actions/checkout@v4  # A versão mais recente do GitHub Actions
+        uses: actions/checkout@v4  # Usando a versão mais recente do GitHub Actions
 
       # Passo 2: Configurar o Node.js
       - name: Set up Node.js
@@ -44,4 +44,4 @@ jobs:
       - name: Run Region API tests
         run: |
           sudo chmod +x src/tests/region.test.js # Garantir permissão de execução para o arquivo de teste
-          npm test src/tests/region.test.js
+          npm test src/tests/region.test.js  # Rodar o teste com o comando npm

@@ -1,28 +1,25 @@
-const axios = require('axios');
+const axios = require('axios');  // Importa o axios para fazer requisições HTTP
 
-// URL base da API para filmes
-const baseUrl = 'https://swapi.dev/api/films/';
-
-describe('Film API Tests', () => {
-  // Teste para verificar se todos os filmes podem ser recuperados
-  it('should fetch all films', async () => {
+describe('Region API Tests', () => {
+  // Teste para obter todas as regiões
+  it('should fetch all regions', async () => {
     try {
-      const response = await axios.get(baseUrl); // Fazendo requisição GET para a lista de filmes
-      expect(response.status).toBe(200); // Verifica se o status da resposta é 200
-      expect(Array.isArray(response.data.results)).toBe(true); // Verifica se o retorno é um array
+      const response = await axios.get('https://swapi.dev/api/planets/');  // Requisição para pegar todos os planetas (regiões)
+      expect(Array.isArray(response.data.results)).toBe(true);  // Verifica se a resposta contém um array de planetas
     } catch (error) {
-      expect(error).toBeUndefined(); // Caso haja erro, falha o teste
+      console.error('Error fetching all regions:', error);  // Caso haja erro, exibe no console
+      throw error;
     }
   });
 
-  // Teste para verificar se um filme específico pode ser recuperado pelo ID
-  it('should fetch a specific film by ID', async () => {
+  // Teste para pegar uma região (planeta) específica pelo ID
+  it('should fetch a specific region by ID', async () => {
     try {
-      const response = await axios.get(`${baseUrl}1/`); // Faz a requisição para o filme com ID 1
-      expect(response.status).toBe(200); // Verifica se o status da resposta é 200
-      expect(response.data.title).toBe('A New Hope'); // Verifica se o título do filme é 'A New Hope'
+      const response = await axios.get('https://swapi.dev/api/planets/1/');  // Requisição para pegar o planeta com ID 1
+      expect(response.data.name).toBe('Tatooine');  // Verifica se o nome do planeta é 'Tatooine'
     } catch (error) {
-      expect(error).toBeUndefined(); // Caso haja erro, falha o teste
+      console.error('Error fetching specific region:', error);  // Caso haja erro, exibe no console
+      throw error;
     }
   });
 });
